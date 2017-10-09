@@ -6,7 +6,6 @@ def parseFile(fileName):
         with open(fileName) as target:
             for i in target:
                 extracted.append(str(i))
-        print (extracted)
         return extracted
     else:
         print ("Sorry that is not a valid file Type")
