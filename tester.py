@@ -2,7 +2,7 @@ from sys import argv
 import Parser
 import ErrorHan
 
-filename = "importantFile.txt"
+fileName = "importantFile.txt"
 
-toPrint = Parser.parseFile(filename)
-print (str(toPrint))
+toPrint = Parser.getDataTypes(Parser.parseFile(fileName))
+print (toPrint)
