@@ -52,11 +52,13 @@ def string2Over(text):
             method += '}\n'
         place += 1
         methods.append(method)
-    print(methods[0])
-    methods.remove(methods[0])
+    print('public void printPhrase(){')
+    print('print', text[0], '();', sep = '')
+    print('}')
+    print()
     remainingCharacters = len(methods)
     for method in range(remainingCharacters):
-        nextMethod = random.randint(0,(len(methods) - 1))
+        nextMethod = random.randint(0, (len(methods)-1))
         print(methods[nextMethod])
         methods.remove(methods[nextMethod])
         
