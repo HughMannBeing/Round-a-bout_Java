@@ -1,11 +1,13 @@
+import random
 def string2Over(text):
     letters = []
     for letter in text:
         letters.append(letter)
     usedLetters = []
-    roundabout = []
+    methods = []
     place = 1
     for character in text:
+        method = ''
         repetitionCounter = 0
         nextRepetitionCounter = 0
         commandCharacter = character
@@ -15,10 +17,17 @@ def string2Over(text):
             if character == letter:
                 repetitionCounter += 1
         if repetitionCounter == 0:
-            roundabout.append(('public void print', commandCharacter, '(){'))
+            method += 'public void print'
+            method += commandCharacter
+            method += '(){\n'
         else:
-            roundabout.append(('public void print', commandCharacter, str(repetitionCounter), '(){'))
-        roundabout.append(('System.out.print("', character, '");'))
+            method += 'public void print'
+            method += commandCharacter
+            method += str(repetitionCounter)
+            method += '(){\n'
+        method += 'System.out.print("'
+        method += character
+        method += '");\n'
         usedLetters.append(character)
         if place != len(letters):
             nextCommandCharacter = letters[place]
@@ -28,14 +37,26 @@ def string2Over(text):
                 if letter == letters[place]:
                     nextRepetitionCounter += 1
             if nextRepetitionCounter == 0:
-                roundabout.append(('print', nextCommandCharacter, '();'))
+                method += 'print'
+                method += nextCommandCharacter
+                method += '();\n'
             else:
-                roundabout.append(('print', nextCommandCharacter, str(nextRepetitionCounter), '();'))
-            roundabout.append('}')
-            roundabout.append('')
+                method += 'print'
+                method += nextCommandCharacter
+                method += str(nextRepetitionCounter)
+                method += '();\n'
+            method += '}\n'
+            method += '\n'
         else:
-            roundabout.append('System.out.println();')
-            roundabout.append('}')
+            method += 'System.out.println();\n'
+            method += '}\n'
         place += 1
-    roundaboutString = str(roundabout)
-    print(roundaboutString)
+        methods.append(method)
+    print(methods[0])
+    methods.remove(methods[0])
+    remainingCharacters = len(methods)
+    for method in range(remainingCharacters):
+        nextMethod = random.randint(0,(len(methods) - 1))
+        print(methods[nextMethod])
+        methods.remove(methods[nextMethod])
+        
